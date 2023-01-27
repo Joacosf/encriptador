@@ -6,7 +6,6 @@
     <head>
         <meta charset="UTF-8">
         <title>encriptador</title>
-        <link href="../encriptador/css/reset.css" rel="stylesheet">
         <link href="../encriptador/css/encriptador.css" rel="stylesheet">
 
     </head>
@@ -59,7 +58,7 @@ const botonCopiar = document.querySelector(".copiar");
 botonCopiar.style.display = "none"
 
 
-//Encriptar mensaje
+//Encriptar 
 
 function botonEncriptar() {
     const textoEncriptado = encriptar(texto.value)
@@ -84,8 +83,7 @@ function encriptar(stringEncriptada) {
 
 }
 
-
-//Desencriptar mensaje
+//desencriptar
 
 function botonDesencriptar() {
     const textoEncriptado = desencriptar(texto.value)
@@ -108,7 +106,7 @@ function desencriptar(stringDesencriptada) {
 }
 
 
-//botón copiar
+//copiar
 
 function copiar() {
 

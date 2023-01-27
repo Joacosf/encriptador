@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+
+   <body>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>encriptador</title>
+        <link href="../encriptador/css/reset.css" rel="stylesheet">
+        <link href="../encriptador/css/encriptador.css" rel="stylesheet">
+
+    </head>
+
+    <header>
+    
+        <img src="../encriptador/imagenes/Logo.png">
+        
+    </header>
+
+    <main>
+        <section>
+            <div class="condiciones">
+                <h1>Solo letras minúsculas y sin acentos</h1>
+            </div>
+            <textarea name="textarea" rows="30" cols="100" class="texto" placeholder="ingrese el texto aqui"></textarea>
+            <div class="botones">
+                <button  class="encriptar" onclick="botonEncriptar()">
+                    encriptar 
+                </button>
+
+                <button  class="desencriptar" onclick="botonDesencriptar()">
+                    desencriptar
+                </button>
+
+            </div>
+
+        </section>
+
+        <section class="textoEncriptado">
+
+            <textarea name="textarea" rows="30" cols="50" class="mensaje"></textarea>
+            <button class="copiar" onclick="copiar()">copiar</button>
+
+        </section>
+      
+    </main>
+
+    <footer class="rodapie">
+       &copy; Alura - Joaquin Zen Caffaro 
+    </footer>
+
+   </body>
+
+   <script>
+
+const texto = document.querySelector(".texto");
+const mensaje = document.querySelector(".mensaje");
+const botonCopiar = document.querySelector(".copiar");
+botonCopiar.style.display = "none"
+
+
+//Encriptar mensaje
+
+function botonEncriptar() {
+    const textoEncriptado = encriptar(texto.value)
+    mensaje.value = textoEncriptado
+    mensaje.style.backgroundImage="none"
+    texto.value = ""
+    botonCopiar.style.display = "block"
+
+}
+
+function encriptar(stringEncriptada) {
+    let matrizCodigo = [["a", "ai"], ["e", "enter"], ["i", "imes"], ["o","ober"], ["u","ufat"]];
+    stringEncriptada = stringEncriptada.toLowerCase();
+
+    for(let i=0; i < matrizCodigo.length; i++) {
+        if(stringEncriptada.includes(matrizCodigo[i][0])) {
+            stringEncriptada = stringEncriptada.replaceAll(matrizCodigo[i][0], matrizCodigo[i][1])
+        }        
+        return stringEncriptada;
+    }
+
+
+}
+
+
+//Desencriptar mensaje
+
+function botonDesencriptar() {
+    const textoEncriptado = desencriptar(texto.value)
+    mensaje.value = textoEncriptado
+    mensaje.style.backgroundImage="none"
+    texto.value = ""  
+}
+
+function desencriptar(stringDesencriptada) {
+    let matrizCodigo = [["a", "ai"], ["e", "enter"], ["i", "imes"], ["o","ober"], ["u","ufat"]];
+    stringDesencriptada = stringDesencriptada.toLowerCase();
+
+    for(let i=0; i < matrizCodigo.length; i++) {
+        if(stringDesencriptada.includes(matrizCodigo[i][1])) {
+            stringDesencriptada = stringDesencriptada.replaceAll(matrizCodigo[i][1], matrizCodigo[i][0])
+        }
+    }
+
+    return stringDesencriptada;
+}
+
+
+//botón copiar
+
+function copiar() {
+
+    mensaje.select();
+    navigator.clipboard.writeText(mensaje.value)
+    mensaje.value = "";
+    alert("Texto Copiado")
+}
+
+    </script>
+
+    
+
+
+
+  
